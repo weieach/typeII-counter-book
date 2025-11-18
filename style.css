@@ -1,0 +1,117 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "StackHeadline";
+  
+}
+
+:root{
+    --book-width: 88vh;
+    --aspect-ratio: 1.234;
+}
+
+body{
+    background-color: black;
+    
+}
+
+main{
+    /* padding: 0px 20px; */
+}
+
+canvas{
+      display: block;
+    position: relative;
+}
+
+header{
+    padding: 10px 340px;
+}
+
+h1{
+    color: #F5F5F5;
+    font-size: 1rem;
+}
+
+h1 > span{
+    color: gray;
+}
+
+@font-face {
+  font-family: "StackHeadline";
+  src: url("assets/StackSansHeadline-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* variable font range */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "StackText";
+  src: url("assets/StackSansText-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* variable font range */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sedgwick";
+  src: url("assets/SedgwickAve-Regular.ttf") format("truetype");
+  /* font-weight: 400;  */
+  font-style: normal;
+}
+
+.main-panel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin-inline: auto;
+}
+
+.canvas{
+    /* width: 1234px;
+    height: 1000px; */
+    width: calc(var(--book-width) * var(--aspect-ratio));
+    height: var(--book-width);
+
+    background-color: white;
+    
+}
+
+
+.lyrics, .discourse{
+    position: absolute;
+}
+
+.lyrics{
+    font-family: "Sedgwick";
+    top: 100px;
+    left: 400px;
+    z-index: 100;
+}
+
+.discourse{
+    bottom: 70px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    width: 28ch;
+    right: 400px;
+    z-index: 100;
+}
+
+.handle{
+
+}
+
+.divider-line{
+    height: 100vh;
+    width: 1px;
+    position: absolute;
+    left: 50vw;
+    background-color: black;
+    /* opacity: 0.1; */
+    z-index: 100;
+}
+
+.ph{
+    color: rgb(195, 195, 195);
+    font-size: 2rem;
+}
