@@ -6,8 +6,10 @@ html, body {
 }
 
 :root{
-    --book-width: 88vh;
+    /* --book-width: 88vh; */
+    --book-width: 1100px;
     --aspect-ratio: 1.234;
+    --blue: #50BAFF;
 }
 
 body{
@@ -24,17 +26,71 @@ canvas{
     position: relative;
 }
 
+
+
 header{
-    padding: 10px 340px;
+    padding: 6px 10vw;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+
+}
+
+header > div{
+    width: var(--book-width);
+    display: flex;
+    margin-inline: auto;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h1{
     color: #F5F5F5;
-    font-size: 1rem;
+    font-size: 1.8rem;
+    /* position: absolute; */
+    /* width: 50px; */
+    font-family: "PPNeuebit";
 }
 
-h1 > span{
-    color: gray;
+nav{
+    display: flex;
+    gap: 30px;
+    
+}
+
+a{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.active{
+    color: #DDD827;
+}
+
+.tooltip{
+    position: absolute;
+    color: white;
+    left: 4vw;
+    top: 0.8vh;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--blue);
+}
+
+.tooltip .ph-info{
+    font-size: 1.5rem;
+    color: var(--blue);
+}
+
+@font-face {
+  font-family: "PPNeuebit";
+  src: url("assets/PPNeueBit-Bold.ttf") format("truetype");
+  font-weight: 400; /* variable font range */
+  font-style: normal;
 }
 
 @font-face {
@@ -59,6 +115,7 @@ h1 > span{
 }
 
 .main-panel{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,13 +126,45 @@ h1 > span{
 .canvas{
     /* width: 1234px;
     height: 1000px; */
-    width: calc(var(--book-width) * var(--aspect-ratio));
-    height: var(--book-width);
-
+    /* width: calc(var(--book-width) * var(--aspect-ratio)); */
+    /* height: var(--book-width); */
+    width: var(--book-width);
+    aspect-ratio: var(--aspect-ratio);
+    /* background-image: url("assets/2-3.png"); */
+    /* background-size: cover; */
+    
     background-color: white;
     
 }
 
+.spread-bg{
+    position: absolute;
+    width: var(--book-width);
+    left: 310px;
+    z-index: 50;
+}
+
+.sp4{
+    z-index: 100;
+}
+
+.sp5{
+    z-index: 100;
+}
+
+.sp5-bg{
+    z-index: 0;
+}
+
+.cover-img{
+    left: 314px;
+}
+
+.sp1-transparent{
+    position: absolute;
+    z-index: 100;
+    
+}
 
 .lyrics, .discourse{
     position: absolute;
