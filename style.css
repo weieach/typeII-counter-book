@@ -73,15 +73,19 @@ a{
 .tooltip{
     position: absolute;
     color: white;
-    left: 4vw;
+    left: 3vw;
     top: 0.8vh;
     display: flex;
-    align-items: center;
-    gap: 6px;
+    align-items: start;
+    gap: 8px;
     color: var(--blue);
 }
 
-.tooltip .ph-info{
+.tooltip p{
+    margin: 0;
+}
+
+.tooltip .ph{
     font-size: 1.5rem;
     color: var(--blue);
 }
@@ -89,21 +93,30 @@ a{
 @font-face {
   font-family: "PPNeuebit";
   src: url("assets/PPNeueBit-Bold.ttf") format("truetype");
-  font-weight: 400; /* variable font range */
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "StackHeadline";
   src: url("assets/StackSansHeadline-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900; /* variable font range */
+  font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "StackText";
   src: url("assets/StackSansText-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900; /* variable font range */
+  font-weight: 100 900; 
+  font-style: normal;
+}
+
+/* locked weight */
+@font-face {
+  font-family: "StackText700";
+  src: url("assets/StackSansText-VariableFont_wght.ttf") format("truetype");
+  font-weight: 700;    
+  font-stretch: normal;
   font-style: normal;
 }
 
@@ -121,6 +134,12 @@ a{
     justify-content: center;
     gap: 60px;
     margin-inline: auto;
+}
+
+img{
+      -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
 }
 
 .canvas{
@@ -142,6 +161,18 @@ a{
     width: var(--book-width);
     left: 310px;
     z-index: 50;
+        margin-left: 4px;
+    margin-top: 2px;
+}
+
+
+.spread-fg{
+    position: absolute;
+    width: var(--book-width);
+    left: 310px;
+    z-index: 100;
+    margin-left: 4px;
+    margin-top: 2px;
 }
 
 .sp4{
@@ -155,6 +186,25 @@ a{
 .sp5-bg{
     z-index: 0;
 }
+
+/* .sp11, .sp8-bg, .sp8-mg, .sp8-fg{
+    margin-left: 4px;
+    margin-top: 2px;
+} */
+
+.sp8-bg{
+    z-index: 0;
+}
+
+.sp8-mg{
+    mix-blend-mode: darken; 
+    z-index: 75;
+}
+
+.sp8-fg{
+    z-index: 100;
+}
+
 
 .cover-img{
     left: 314px;
@@ -203,4 +253,8 @@ a{
 .ph{
     color: rgb(195, 195, 195);
     font-size: 2rem;
+}
+
+#canvasWrapper7{
+    font-weight: 700;
 }

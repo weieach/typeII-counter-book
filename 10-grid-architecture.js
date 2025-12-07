@@ -23,10 +23,10 @@ function preload() {
 }
 
 function setup() {
-  let c4 = createCanvas(622, 893);
-  c4.parent(canvasWrapper4);
-  c4.style("position", "absolute");
-  c4.style("z-index", "0");
+  let c10 = createCanvas(622, 893);
+  c10.parent(canvasWrapper10);
+  c10.style("position", "absolute");
+  c10.style("z-index", "0");
   pixelDensity(1);
 
 textFont(font);
@@ -44,10 +44,12 @@ function draw() {
    stringIndex = 0;
 
   for (let y = 0; y < 100; y+=1.2) {
+    translate(noise(frameCount), 0);
     for (let x = 0; x < 50; x+=1.2) {
       
       fill(lerpColor(fromCol, toCol, noise(colorIndex)));
       textSize(scaleFactor);
+      
       text(string[stringIndex], x *(scaleFactor/1.2), y * scaleFactor/1.2);
       stringIndex++;
       if(stringIndex == string.length){

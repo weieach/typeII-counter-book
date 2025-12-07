@@ -27,7 +27,7 @@ function setup() {
   c4.parent(canvasWrapper4);
   c4.style("position", "absolute");
   c4.style("z-index", "0");
-  pixelDensity(1);
+  pixelDensity(2);
 
 textFont(font);
 
@@ -44,8 +44,8 @@ function draw() {
    stringIndex = 0;
 
   let radius = width/6;
-  let minSize = scaleFactor / 1.2;
-  let maxSize = scaleFactor*1.6;
+  let minSize = scaleFactor ;
+  let maxSize = scaleFactor*1.8;
 
   for (let y = 0; y < 100; y+=1.2) {
     for (let x = 0; x < 50; x+=1.2) {
