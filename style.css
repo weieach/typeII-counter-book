@@ -205,10 +205,31 @@ img{
     z-index: 100;
 }
 
-
-.cover-img{
-    left: 314px;
+.sp15{
+    top: -4px;
 }
+
+.panel-15 p{
+    position: absolute;
+    font-family: "PPNeuebit";
+    color: #3A7157;
+    z-index: 100;
+    /* left: 355px; */
+    left: 670px;
+    font-size: 1.2rem;
+    /* bottom: 235px; */
+    bottom: 270px;
+}
+
+video{
+    position: absolute;
+    width: 300px;
+    left: 348px;
+}
+
+/* .cover-img{
+    left: 314px;
+} */
 
 .sp1-transparent{
     position: absolute;
