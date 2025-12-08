@@ -20,10 +20,8 @@ let pressCount = 0;
 let walkerCount = 0;
 let walker;
 
-
 function preload() {
   font = loadFont("assets/PPNeueBit-Bold.ttf");
-
 }
 
 function setup() {
@@ -38,83 +36,71 @@ function setup() {
   background(255);
   background("#2A8257");
   frameRate(20);
-walker = new Walker();
-walker = new Walker();
-  
+  walker = new Walker();
+  walker = new Walker();
 }
 
-
-
-
 function draw() {
-  
-  
   strSize = height / 15;
   textSize(strSize);
   textFont(font);
-  
+
   translate(0, 50);
 
-  if(frameCount > 20){
+  if (frameCount > 20) {
     walker.step();
-  walker.show();
+    walker.show();
 
-  if(frameCount %30 == 0){
-    walker = new Walker();
+    if (frameCount % 30 == 0) {
+      walker = new Walker();
+    }
   }
-  }
-  
-  
 }
 
 function mouseDragged() {
-  
-  
-  fill('#cce7eb');
+  fill("#cce7eb");
   stroke("#3F99D9");
   fill("#3F99D9");
   text(string[pressCount], mouseX, mouseY);
-  
-  if(pressCount == string.length - 1){
+
+  if (pressCount == string.length - 1) {
     pressCount = 0;
   } else {
     pressCount++;
   }
 }
 
-
-
 class Walker {
-  constructor(){
+  constructor() {
     this.x = random(width);
-    this.y = height/4 + randomGaussian(0, height/2);
+    this.y = height / 4 + randomGaussian(0, height / 2);
   }
-  
-  show(){
+
+  show() {
     // stroke(0);
     fill("#3F99D9");
     text(string[walkerCount], this.x, this.y);
   }
 
-  step(){
-    let xstep = random(-5,5);
-    let randomMax = 30; 
-    if(random() < 0.2){
-      randomMax = 70; 
-    } else if (random() > 0.8){
-      randomMax = 10; 
+  step() {
+    let xstep = random(-5, 5);
+    let randomMax = 30;
+    if (random() < 0.2) {
+      randomMax = 70;
+    } else if (random() > 0.8) {
+      randomMax = 10;
     }
-    if(random()<0.2){
-      randomMax += 20; 
+    if (random() < 0.2) {
+      randomMax += 20;
     }
-    let ystep = random(0,randomMax);
+    let ystep = random(0, randomMax);
     this.x += xstep;
     this.y += ystep;
-    
-    if(walkerCount == string.length - 1){
-    walkerCount = 0;
-  } else {
-    walkerCount++;
-  }
+
+    if (walkerCount == string.length - 1) {
+      walkerCount = 0;
+    } else {
+      walkerCount++;
+    }
   }
 }

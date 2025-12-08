@@ -42,9 +42,12 @@ function draw() {
   //
   textAlign(CENTER);
    stringIndex = 0;
-
+     angleMode(DEGREES)
+   
+   
   for (let y = 0; y < 100; y+=1.2) {
-    translate(noise(frameCount), 0);
+    push();
+    translate(sin(frameCount*0.5) * width, 0);
     for (let x = 0; x < 50; x+=1.2) {
       
       fill(lerpColor(fromCol, toCol, noise(colorIndex)));
@@ -57,5 +60,6 @@ function draw() {
       }
       colorIndex++;
     }
+    pop();
   }
 }
