@@ -32,9 +32,19 @@ function preload() {
 
 }
 
+let wrapper3;
+const aspect = 1100 / 893;
+
+
 function setup() {
-let c3 = createCanvas(1100, 893);
-  pg = createGraphics(1100 * 0.288*2, 1100*0.162*2);
+  wrapper3 = document.getElementById("canvasWrapper3");
+  
+  let w = wrapper3.offsetWidth;
+  let h = w/aspect;
+
+  let c3 = createCanvas(w, h).parent(wrapper3);
+  resizeToWrapper();
+  pg = createGraphics(width * 0.288*2, height*0.162*2);
   c3.parent(canvasWrapper3);
   c3.style("position", "absolute");
   c3.style("z-index", "75");
@@ -139,3 +149,19 @@ function mouseDragged() {
   }
 }
 
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper3) return;
+
+  let w = wrapper3.offsetWidth;
+  let h = w / aspect ;
+
+  // let h = wrapper4.offsetHeight;
+  // let w = h / aspect;
+
+
+  resizeCanvas(w, h);
+}

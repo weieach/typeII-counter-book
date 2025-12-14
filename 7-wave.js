@@ -17,9 +17,20 @@ function preload(){
   stackText = loadFont("assets/StackSansText-VariableFont_wght.ttf");
 }
 
+let wrapper7;
+const aspect = 1100 / 893;
+
+
 function setup() {
-  let c7 = createCanvas(1100, 893);
-  c7.parent("canvasWrapper7");
+  wrapper7 = document.getElementById("canvasWrapper7");
+  let w = wrapper7.offsetWidth;
+  let h = w / aspect;
+
+  let c7 = createCanvas(w, h).parent(wrapper7);
+  resizeToWrapper();
+
+  // let c7 = createCanvas(1100, 893);
+  // c7.parent("canvasWrapper7");
   c7.style("position", "absolute");
   c7.style("z-index", "50");
   c7.style("font-weight", "700");
@@ -35,7 +46,7 @@ function draw() {
   textSize(width/80);
   fill(string1Color);
   
-  print(count)
+  // print(count)
   count+= increaseRate;
   count = round(count * 100)/100;
   if(count == 12 || count == 3){
@@ -117,3 +128,15 @@ function draw() {
 }
 
 
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper7) return;
+
+  let w = wrapper7.offsetWidth;
+  let h = w / aspect;
+
+  resizeCanvas(w, h);
+}

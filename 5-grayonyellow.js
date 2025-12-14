@@ -15,9 +15,18 @@ function preload() {
 
 }
 
+let wrapper5;
+const aspect = 1100 / 893;
+
+
 function setup() {
-  let c5 = createCanvas(1100, 893);
-  c5.parent("canvasWrapper5");
+  wrapper5 = document.getElementById("canvasWrapper5");
+  
+  let w = wrapper5.offsetWidth;
+  let h = w / aspect;
+
+  let c5 = createCanvas(w, h).parent(wrapper5);
+  resizeToWrapper();
   c5.style("position", "absolute");
   c5.style("z-index", "50");
   // c5.style("opacity", "0.4");
@@ -76,4 +85,18 @@ function draw() {
     // fontSize /= 2;
     pop();
   }
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper5) return;
+
+  let w = wrapper5.offsetWidth;
+  let h = w / aspect;
+
+  resizeCanvas(w, h);
 }

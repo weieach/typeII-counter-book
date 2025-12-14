@@ -1,93 +1,88 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: "StackHeadline";
-  
 }
 
-:root{
-    /* --book-width: 88vh; */
-    --book-width: 1100px;
-    --aspect-ratio: 1.234;
-    --blue: #50BAFF;
+:root {
+  /* --book-width: 88vh; */
+  --book-width: 1100px;
+  --aspect-ratio: 1.234;
+  --blue: #50baff;
 }
 
-body{
-    background-color: black;
-    
+body {
+  background-color: black;
 }
 
-main{
-    /* padding: 0px 20px; */
+main {
+  /* padding: 0px 20px; */
 }
 
-canvas{
-      display: block;
-    position: relative;
+canvas {
+  display: block;
+  position: relative;
 }
 
+header {
+  padding: 6px 10vw;
 
-
-header{
-    padding: 6px 10vw;
-    
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* position: absolute; */
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
 }
 
-header > div{
-    width: var(--book-width);
-    display: flex;
-    margin-inline: auto;
-    align-items: center;
-    justify-content: space-between;
+header > div {
+  width: 100%;
+  max-width: var(--book-width);
+  display: flex;
+  margin-inline: auto;
+  align-items: center;
+  justify-content: space-between;
 }
 
-h1{
-    color: #F5F5F5;
-    font-size: 1.8rem;
-    /* position: absolute; */
-    /* width: 50px; */
-    font-family: "PPNeuebit";
+h1 {
+  color: #f5f5f5;
+  font-size: 1.8rem;
+  /* position: absolute; */
+  /* width: 50px; */
+  font-family: "PPNeuebit";
 }
 
-nav{
-    display: flex;
-    gap: 30px;
-    
+nav {
+  display: flex;
+  gap: 1.9rem;
 }
 
-a{
-    color: aliceblue;
-    text-decoration: none;
+a {
+  color: aliceblue;
+  text-decoration: none;
 }
 
-.active{
-    color: #DDD827;
+.active {
+  color: #ddd827;
 }
 
-.tooltip{
-    position: absolute;
-    color: white;
-    left: 3vw;
-    top: 0.8vh;
-    display: flex;
-    align-items: start;
-    gap: 8px;
-    color: var(--blue);
+.tooltip {
+  position: absolute;
+  color: white;
+  left: 3vw;
+  top: 0.8vh;
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  color: var(--blue);
 }
 
-.tooltip p{
-    margin: 0;
+.tooltip p {
+  margin: 0;
 }
 
-.tooltip .ph{
-    font-size: 1.5rem;
-    color: var(--blue);
+.tooltip .ph {
+  font-size: 1.5rem;
+  color: var(--blue);
 }
 
 @font-face {
@@ -107,7 +102,7 @@ a{
 @font-face {
   font-family: "StackText";
   src: url("assets/StackSansText-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900; 
+  font-weight: 100 900;
   font-style: normal;
 }
 
@@ -115,7 +110,7 @@ a{
 @font-face {
   font-family: "StackText700";
   src: url("assets/StackSansText-VariableFont_wght.ttf") format("truetype");
-  font-weight: 700;    
+  font-weight: 700;
   font-stretch: normal;
   font-style: normal;
 }
@@ -127,64 +122,65 @@ a{
   font-style: normal;
 }
 
-.main-panel{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-    margin-inline: auto;
+.main-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
+  margin-inline: auto;
 }
 
-img{
-      -webkit-user-drag: none;
+img {
+  -webkit-user-drag: none;
   user-select: none;
   pointer-events: auto;
 }
 
-.canvas{
-    /* width: 1234px;
+.canvas {
+  /* width: 1234px;
     height: 1000px; */
-    /* width: calc(var(--book-width) * var(--aspect-ratio)); */
-    /* height: var(--book-width); */
-    width: var(--book-width);
-    aspect-ratio: var(--aspect-ratio);
-    /* background-image: url("assets/2-3.png"); */
-    /* background-size: cover; */
-    
-    background-color: white;
-    
+  /* width: calc(var(--book-width) * var(--aspect-ratio)); */
+  /* height: var(--book-width); */
+  width: 100%;
+  max-width: var(--book-width);
+  aspect-ratio: var(--aspect-ratio);
+  /* background-image: url("assets/2-3.png"); */
+  /* background-size: cover; */
+  overflow: hidden;
+  background-color: white;
 }
 
-.spread-bg{
-    position: absolute;
-    width: var(--book-width);
-    left: 310px;
-    z-index: 50;
-        margin-left: 4px;
-    margin-top: 2px;
+.spread-bg {
+  position: absolute;
+  width: 88.75vw;
+  max-width: var(--book-width);
+  /* left: 310px; */
+  z-index: 50;
+  /* margin-left: 4px; */
+  /* margin-top: 2px; */
 }
 
-
-.spread-fg{
-    position: absolute;
-    width: var(--book-width);
-    left: 310px;
-    z-index: 100;
-    margin-left: 4px;
-    margin-top: 2px;
+.spread-fg {
+  position: absolute;
+  width: 88.75vw;
+  max-width: var(--book-width);
+  /* left: 310px; */
+  z-index: 100;
+  /* margin-left: 4px;
+  margin-top: 2px; */
 }
 
-.sp4{
-    z-index: 100;
+.sp4 {
+  z-index: 100;
 }
 
-.sp5{
-    z-index: 100;
+.sp5 {
+  z-index: 100;
 }
 
-.sp5-bg{
-    z-index: 0;
+.sp5-bg {
+  z-index: 0;
 }
 
 /* .sp11, .sp8-bg, .sp8-mg, .sp8-fg{
@@ -192,94 +188,181 @@ img{
     margin-top: 2px;
 } */
 
-.sp8-bg{
-    z-index: 0;
+.sp8-bg {
+  z-index: 0;
 }
 
-.sp8-mg{
-    mix-blend-mode: darken; 
-    z-index: 75;
+.sp8-mg {
+  mix-blend-mode: darken;
+  z-index: 75;
 }
 
-.sp8-fg{
-    z-index: 100;
+.sp8-fg {
+  z-index: 100;
 }
 
-.sp15{
-    top: -4px;
+.sp15 {
+  top: -4px;
 }
 
-.panel-15 p{
-    position: absolute;
-    font-family: "PPNeuebit";
-    color: #3A7157;
-    z-index: 100;
-    /* left: 355px; */
-    left: 670px;
-    font-size: 1.2rem;
-    /* bottom: 235px; */
-    bottom: 270px;
+.panel-15 p {
+  position: absolute;
+  font-family: "PPNeuebit";
+  color: #3a7157;
+  z-index: 100;
+  /* left: 355px; */
+  left: 670px;
+  font-size: 1.2rem;
+  /* bottom: 235px; */
+  bottom: 270px;
 }
 
-video{
-    position: absolute;
-    width: 300px;
-    left: 348px;
+video {
+  position: absolute;
+  width: 300px;
+  left: 348px;
 }
 
 /* .cover-img{
     left: 314px;
 } */
 
-.sp1-transparent{
+.sp1-transparent {
+  position: absolute;
+  z-index: 100;
+}
+
+#canvasWrapper13 {
+  background-color: black;
+}
+
+.lyrics,
+.discourse {
+  position: absolute;
+}
+
+.lyrics {
+  font-family: "Sedgwick";
+  top: 100px;
+  left: 400px;
+  z-index: 100;
+}
+
+.discourse {
+  bottom: 70px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  width: 28ch;
+  right: 400px;
+  z-index: 100;
+}
+
+.handle {
+}
+
+.divider-line {
+  height: 100vh;
+  width: 1px;
+  position: absolute;
+  left: 50vw;
+  background-color: black;
+  /* opacity: 0.1; */
+  z-index: 100;
+}
+
+.ph {
+  color: rgb(195, 195, 195);
+  font-size: 2rem;
+}
+
+#canvasWrapper7 {
+  font-weight: 700;
+}
+
+.mobile-alert,
+.static-thumbnail {
+  display: none;
+  position: static;
+}
+
+.handle .ph {
+  color: aliceblue;
+  font-weight: 700;
+}
+
+/* .handle:hover{
+    scale: 1.2;
+    transition-property: scale;
+    transition-duration: 200ms;
+} */
+
+
+@media (max-width: 1050px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .spread-bg, .spread-fg {
+    width: 88.5vw;
+  }
+}
+
+@media (max-width: 970px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .spread-bg, .spread-fg {
     position: absolute;
-    z-index: 100;
-    
+    width: 88.5vw;
+    max-width: var(--book-width);
+    /* left: 310px; */
+    z-index: 50;
+    /* margin-left: 4px; */
+    /* margin-top: 2px; */
+  }
 }
 
-#canvasWrapper13{
-    background-color: black;
+@media (max-width: 900px) {
+
+  .spread-bg, .spread-fg {
+    width: 87.75vw;
+  }
 }
 
-.lyrics, .discourse{
-    position: absolute;
-}
+@media (max-width: 750px) {
+  header > div {
+    flex-direction: column;
+    gap: 0;
+  }
 
-.lyrics{
-    font-family: "Sedgwick";
-    top: 100px;
-    left: 400px;
-    z-index: 100;
-}
+  .ph-laptop {
+    margin-right: 6px;
+  }
 
-.discourse{
-    bottom: 70px;
-    font-size: 1.4rem;
-    font-weight: 600;
-    width: 28ch;
-    right: 400px;
-    z-index: 100;
-}
+  .mobile-alert {
+    display: block;
+    /* position: absolute; */
+    /* color: #f5f5f5; */
+    margin-top: 18px;
+    margin-bottom: 28px;
+    text-align: left;
+    align-self: start;
+  }
 
-.handle{
+  .static-thumbnail {
+    display: block;
+    width: 100%;
+  }
 
-}
+  h1 {
+    font-size: 4.5rem;
+    margin-top: 30vh;
+    margin-bottom: 0;
+  }
 
-.divider-line{
-    height: 100vh;
-    width: 1px;
-    position: absolute;
-    left: 50vw;
-    background-color: black;
-    /* opacity: 0.1; */
-    z-index: 100;
-}
-
-.ph{
-    color: rgb(195, 195, 195);
-    font-size: 2rem;
-}
-
-#canvasWrapper7{
-    font-weight: 700;
+  nav,
+  main {
+    display: none;
+  }
 }

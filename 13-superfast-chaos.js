@@ -6,9 +6,17 @@ function preload() {
   font = loadFont('assets/StackSansText-VariableFont_wght.ttf'); // Replace with your font path
 }
 
+let wrapper13;
+const aspect = 1100 / 893;
+
+
 function setup() {
-  let c13 = createCanvas(1100, 893);
-  c13.parent(canvasWrapper13);
+  wrapper13 = document.getElementById("canvasWrapper13");
+  let w = wrapper13.offsetWidth;
+  let h = w / aspect;
+
+  let c13 = createCanvas(w, h).parent(wrapper13);
+  resizeToWrapper();
   c13.style("position", "absolute");
   c13.style("z-index", "0");
   // textFont(font)
@@ -94,4 +102,17 @@ function draw() {
   fill(0, 110);
   rect(0, 0, width, height);
 
+}
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper13) return;
+
+  let w = wrapper13.offsetWidth;
+  let h = w / aspect;
+
+  resizeCanvas(w, h);
 }

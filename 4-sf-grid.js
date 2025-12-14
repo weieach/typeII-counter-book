@@ -22,9 +22,20 @@ function preload() {
 
 }
 
+
+let wrapper4;
+const aspect = 1100 / 893;
+
+
 function setup() {
-  let c4 = createCanvas(622, 893);
-  c4.parent(canvasWrapper4);
+  wrapper4 = document.getElementById("canvasWrapper4");
+  
+  let w = wrapper4.offsetWidth;
+  let h = w/aspect;
+
+  let c4 = createCanvas(w, h).parent(wrapper4);
+  resizeToWrapper();
+
   c4.style("position", "absolute");
   c4.style("z-index", "0");
   pixelDensity(2);
@@ -34,6 +45,7 @@ textFont(font);
 }
 
 function draw() {
+  scaleFactor = width*0.016;
       
   noStroke();
   background(255);
@@ -47,8 +59,9 @@ function draw() {
   let minSize = scaleFactor ;
   let maxSize = scaleFactor*1.8;
 
-  for (let y = 0; y < 100; y+=1.2) {
-    for (let x = 0; x < 50; x+=1.2) {
+  for (let y = 0; y < width*0.09; y+= width*0.001) {
+    // y+=1.2
+    for (let x = 0; x < width*0.04; x+=width*0.001) {
       
       fill(lerpColor(fromCol, toCol, noise(colorIndex)));
       let px = x * (scaleFactor / 1.2);
@@ -69,4 +82,22 @@ function draw() {
       colorIndex++;
     }
   }
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper4) return;
+
+  let w = wrapper4.offsetWidth;
+  let h = w / aspect ;
+
+  // let h = wrapper4.offsetHeight;
+  // let w = h / aspect;
+
+
+  resizeCanvas(w, h);
 }
