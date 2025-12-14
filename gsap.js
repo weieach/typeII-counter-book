@@ -60,7 +60,8 @@ document.fonts.ready.then(() => {
 
   toolTips.forEach((toolTip) => {
     toolTip.addEventListener("click", () => {
-      
+      document.querySelector(".tooltip p").style.display = "none";
+      toolTip.style.width = "fit-content";
     })
   })
 

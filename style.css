@@ -223,6 +223,10 @@ img {
   top: -4px;
 }
 
+#canvasWrapper15{
+    position: relative;
+}
+
 .panel-15 .right-handle{
     visibility: hidden;
 }
@@ -239,10 +243,13 @@ img {
   bottom: 270px;
 }
 
-video {
+.panel-15 video {
   position: absolute;
-  width: 20.2%;
-  left: 15%;
+  width: 28%;
+  left:3%;
+  top: 30%;
+  /* left: 0; */
+  box-sizing: border-box;
 }
 
 /* .cover-img{
