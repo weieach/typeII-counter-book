@@ -131,6 +131,10 @@ a {
   font-style: normal;
 }
 
+#canvasWrapper0{
+    position: relative;
+}
+
 .main-panel {
   position: relative;
   display: flex;
@@ -138,6 +142,10 @@ a {
   justify-content: center;
   gap: 3vw;
   margin-inline: auto;
+}
+
+.sp0 .left-handle{
+    visibility: hidden;
 }
 
 img {

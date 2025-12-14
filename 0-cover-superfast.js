@@ -19,13 +19,23 @@ function preload() {
   font = loadFont("assets/PPNeueBit-Bold.ttf");
 }
 
+let wrapper0;
+const aspect = 550 / 600;
+
+
 function setup() {
-  let c0 = createCanvas(934/1.7, 600);
-  c0.parent("canvasWrapper0");
+  wrapper0 = document.getElementById("canvasWrapper0");
+  let w = wrapper0.offsetWidth / 2;
+  let h = w / aspect;
+
+  let c0 = createCanvas(w, h).parent(wrapper0);
+  resizeToWrapper();
+  // let c0 = createCanvas(934/1.7, 600);
+
   c0.style("position", "absolute");
   c0.style("z-index", "100");
-  c0.style("bottom", "00px");
-  c0.style("right", "315px");
+  c0.style("bottom", "0px");
+  c0.style("right", "0");
   textFont(font);
   textSize(100);
   background(yellowColor);
@@ -96,4 +106,18 @@ function draw() {
     pop();
   }
   pop();
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper0) return;
+
+  let w = wrapper0.offsetWidth /2;
+  let h = w / aspect;
+
+  resizeCanvas(w, h);
 }
