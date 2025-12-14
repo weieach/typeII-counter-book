@@ -24,11 +24,20 @@ function preload() {
   font = loadFont("assets/PPNeueBit-Bold.ttf");
 }
 
+let wrapper8;
+const aspect = 550 / 893;
+
+
 function setup() {
-  let c8 = createCanvas(555, 893);
-  c8.parent("canvasWrapper8");
+  wrapper8 = document.getElementById("canvasWrapper8");
+  
+  let w = wrapper8.offsetWidth/2;
+  let h = w / aspect;
+
+  let c8 = createCanvas(w, h).parent(wrapper8);
+  resizeToWrapper();
   c8.style("position", "absolute");
-  c8.style("right", "312px");
+  c8.style("right", "12.7vw");
   c8.style("z-index", "50");
   pixelDensity(2);
 
@@ -103,4 +112,22 @@ class Walker {
       walkerCount++;
     }
   }
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper8) return;
+
+  let w = wrapper8.offsetWidth/2;
+  let h = w / aspect ;
+
+  // let h = wrapper4.offsetHeight;
+  // let w = h / aspect;
+
+
+  resizeCanvas(w, h);
 }

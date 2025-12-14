@@ -27,16 +27,30 @@ function preload(){
 
 // let canvasWrapper = document.getElementById("canvasWrapper1");
 
+let wrapper1;
+const aspect = 450 / 500;
+
+
 function setup() {
-  let c1 = createCanvas(450, 500);
-  c1.parent("canvasWrapper1");
+  wrapper1 = document.getElementById("canvasWrapper1");
+  
+  let w = wrapper1.offsetWidth * 0.409;
+  let h = w/aspect;
+
+  let c1 = createCanvas(w, h).parent(wrapper1);
+  resizeToWrapper();
+
+
+  // let c1 = createCanvas(450, 500);
+
   c1.style("position", "absolute");
-  c1.style("left", "709px");
-  c1.style("top", "220px");
-	pixelDensity(1);
+  c1.style("left", "40vw");
+  c1.style("top", "22vh");
+	pixelDensity(2);
   textFont(font);
 	video = createCapture(VIDEO);
 	video.size(width/scaleFactor, height/scaleFactor);}
+  
 
 function draw() {
   background(255);
@@ -64,5 +78,24 @@ function draw() {
       colorIndex++;
     }
   }
+  video.hide();
   // updatePixels();
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper1) return;
+
+  let w = wrapper1.offsetWidth * 0.409;
+  let h = w / aspect ;
+
+  // let h = wrapper4.offsetHeight;
+  // let w = h / aspect;
+
+
+  resizeCanvas(w, h);
 }

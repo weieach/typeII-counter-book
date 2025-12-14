@@ -22,12 +22,21 @@ function preload() {
 
 }
 
+let wrapper10;
+const aspect = 1100 / 893;
+
+
 function setup() {
-  let c10 = createCanvas(622, 893);
-  c10.parent(canvasWrapper10);
+  wrapper10 = document.getElementById("canvasWrapper10");
+  let w = wrapper10.offsetWidth;
+  let h = w / aspect;
+
+  let c10 = createCanvas(w, h).parent(wrapper10);
+  resizeToWrapper();
   c10.style("position", "absolute");
   c10.style("z-index", "0");
   pixelDensity(1);
+  scaleFactor = width*0.016;
 
 textFont(font);
 
@@ -62,4 +71,18 @@ function draw() {
     }
     pop();
   }
+}
+
+
+function windowResized() {
+  resizeToWrapper();
+}
+
+function resizeToWrapper() {
+  if (!wrapper10) return;
+
+  let w = wrapper10.offsetWidth;
+  let h = w / aspect;
+
+  resizeCanvas(w, h);
 }

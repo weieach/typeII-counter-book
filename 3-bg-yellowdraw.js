@@ -65,11 +65,11 @@ function setup() {
 
 
 function draw() {
-    
+    fontSize = width*0.72;
     pg.background(yellowColor);
   pg.push();
 
-  pg.translate(-pg.width / 3, -pg.height*1.1);
+  pg.translate(-pg.width / 3, -pg.height*1.05);
 
   fontSize = pg.width/1.2;
   pg.textSize(fontSize);
@@ -126,9 +126,11 @@ function draw() {
 
 //   pg.resize(1100 * 0.288, 1100*0.162);
   
-  imageMode(CORNER);
-  image(pg, 393, 392, 1100 * 0.288, 1100*0.162);
-
+  imageMode(CENTER);
+  push()
+  translate(width/2, height/2)
+  image(pg, 0, 0, width * 0.288, width*0.162);
+  pop()
 
   strSize = height / 20;
   textFont(font);

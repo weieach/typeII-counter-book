@@ -7,7 +7,7 @@ body {
 
 :root {
   /* --book-width: 88vh; */
-  --book-width: 1100px;
+  --book-width: 1080px;
   --aspect-ratio: 1.234;
   --blue: #50baff;
 }
@@ -26,7 +26,7 @@ canvas {
 }
 
 header {
-  padding: 6px 10vw;
+  padding: 6px 0px;
 
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ header {
 }
 
 header > div {
-  width: 100%;
+  width: 88vw;
   max-width: var(--book-width);
   display: flex;
   margin-inline: auto;
@@ -68,12 +68,21 @@ a {
 .tooltip {
   position: absolute;
   color: white;
-  left: 3vw;
-  top: 0.8vh;
+  right: clamp(40px, 10vw, 140px);
+  top: 2vh;
   display: flex;
   align-items: start;
-  gap: 8px;
+  gap: 1rem;
   color: var(--blue);
+  z-index: 140;
+  background-color: #000000;
+  border: 1px solid #50baff;
+  padding: 1.5rem;
+  width: 240px;
+}
+
+.sp4-main-panel .tooltip{
+    top: 24vh;
 }
 
 .tooltip p {
@@ -190,6 +199,7 @@ img {
 
 .sp8-bg {
   z-index: 0;
+  margin-top: 2px;
 }
 
 .sp8-mg {
@@ -205,13 +215,17 @@ img {
   top: -4px;
 }
 
+.panel-15 .right-handle{
+    visibility: hidden;
+}
+
 .panel-15 p {
   position: absolute;
   font-family: "PPNeuebit";
   color: #3a7157;
   z-index: 100;
   /* left: 355px; */
-  left: 670px;
+  left: 36%;
   font-size: 1.2rem;
   /* bottom: 235px; */
   bottom: 270px;
@@ -219,8 +233,8 @@ img {
 
 video {
   position: absolute;
-  width: 300px;
-  left: 348px;
+  width: 20.2%;
+  left: 15%;
 }
 
 /* .cover-img{
@@ -296,14 +310,33 @@ video {
     transition-duration: 200ms;
 } */
 
-
 @media (max-width: 1050px) {
   :root {
     font-size: 14px;
   }
 
-  .spread-bg, .spread-fg {
+  .spread-bg,
+  .spread-fg {
     width: 88.5vw;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .tooltip:not(.mobile-alert) {
+    position: absolute;
+    right: 0;
+    top: 86vh;
+    border: none;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tooltip p{
+    /* width: fit-content; */
   }
 }
 
@@ -312,7 +345,8 @@ video {
     font-size: 14px;
   }
 
-  .spread-bg, .spread-fg {
+  .spread-bg,
+  .spread-fg {
     position: absolute;
     width: 88.5vw;
     max-width: var(--book-width);
@@ -324,8 +358,8 @@ video {
 }
 
 @media (max-width: 900px) {
-
-  .spread-bg, .spread-fg {
+  .spread-bg,
+  .spread-fg {
     width: 87.75vw;
   }
 }
@@ -348,6 +382,8 @@ video {
     margin-bottom: 28px;
     text-align: left;
     align-self: start;
+    padding: 0;
+    border: none;
   }
 
   .static-thumbnail {

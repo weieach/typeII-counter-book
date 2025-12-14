@@ -56,6 +56,14 @@ document.fonts.ready.then(() => {
     });
   });
 
+  let toolTips = document.querySelectorAll(".tooltip");
+
+  toolTips.forEach((toolTip) => {
+    toolTip.addEventListener("click", () => {
+      
+    })
+  })
+
   // get current file name (e.g. "sp3.html")
 
   let currentPage = window.location.pathname.split("/").pop() || "index.html";
