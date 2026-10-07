@@ -37,7 +37,7 @@ function setup() {
   let c8 = createCanvas(w, h).parent(wrapper8);
   resizeToWrapper();
   c8.style("position", "absolute");
-  c8.style("right", "12.7vw");
+  c8.style("right", "8%");
   c8.style("z-index", "50");
   pixelDensity(2);
 

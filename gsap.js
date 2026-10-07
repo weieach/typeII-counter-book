@@ -19,17 +19,19 @@ document.fonts.ready.then(() => {
         <a href="index.html" class="index-h1">
           <i>Superfast!</i> Our Fatigued Body and Society</a>
       </h1>
-      <p class="tooltip mobile-alert "><i class="ph-fill ph-laptop"></i>For the full interactive experience, please switch to a desktop screen.</p>
-      <img src="assets/cover.png" class="static-thumbnail" alt="cover-static-thumbnail">
       <nav>
         ${Array.from(
           { length: 15 },
           (_, i) => `<a href="sp${i + 1}.html">${i + 1}</a>`
         ).join("")}
+        <span class="page-steps">
+          <a class="page-step page-step-prev" aria-label="Previous spread"><span class="pixel-tri pixel-tri-left"></span></a>
+          <a class="page-step page-step-next" aria-label="Next spread"><span class="pixel-tri pixel-tri-right"></span></a>
+        </span>
       </nav>
     </div>`;
 
-  let anchors = document.querySelectorAll("nav a");
+  let anchors = document.querySelectorAll("nav a:not(.page-step)");
   let activeAnchor = document.querySelector(".active");
 
   gsap.from(activeAnchor, {
@@ -55,6 +57,41 @@ document.fonts.ready.then(() => {
       });
     });
   });
+
+  let logo = document.querySelector("header h1");
+  let tip = document.querySelector(".tooltip");
+  let brand = null;
+
+  if (logo && tip) {
+    brand = document.createElement("div");
+    brand.className = "brand-row";
+    logo.parentElement.insertBefore(brand, logo);
+    brand.append(logo, tip);
+  }
+
+  function placeTip() {
+    if (!tip || !brand) return;
+    let nav = document.querySelector("nav");
+    let panel = document.querySelector(".main-panel");
+
+    if (tip.parentElement !== brand) brand.append(tip);
+    tip.classList.remove("tooltip-above-book");
+
+    let twoRows = false;
+    if (nav) {
+      let brandBox = brand.getBoundingClientRect();
+      let navBox = nav.getBoundingClientRect();
+      twoRows = navBox.top > brandBox.bottom - 2;
+    }
+
+    if (twoRows && panel) {
+      panel.append(tip);
+      tip.classList.add("tooltip-above-book");
+    }
+  }
+
+  placeTip();
+  window.addEventListener("resize", placeTip);
 
   let toolTips = document.querySelectorAll(".tooltip");
 
@@ -112,48 +149,126 @@ document.fonts.ready.then(() => {
     });
   });
 
-  let handles = document.querySelectorAll(".handle");
-  let rightHandle = document.querySelector(".right-handle");
-  let leftHandle = document.querySelector(".left-handle");
+  let isCover = currentPage === "index.html";
+  let prevStep = document.querySelector(".page-step-prev");
+  let nextStep = document.querySelector(".page-step-next");
+  let mainEl = document.querySelector("main");
+  let panel = document.querySelector(".main-panel");
+  let edgePrev = null;
+  let edgeNext = null;
 
-  handles.forEach((handle) => {
-    handle.addEventListener("mouseenter", () => {
-      gsap.to(handle, {
-        scale: 1.4,
-        duration: 0.3,
-        color: "#FFD700",
-        ease: "power1.inOut",
-      });
-    });
-
-    handle.addEventListener("mouseleave", () => {
-      gsap.to(handle, {
-        scale: 1,
-        color: "#F1F8FF",
-        duration: 0.3,
-      });
-    });
-  });
-
-  let nextSpreadNum = Number.parseInt(currentSpreadNum + 1, 10);
-
-  rightHandle.addEventListener("click", () => {
-    if (currentPage === "index.html") {
-      nextSpreadNum = 1;
-    } else {
-      nextSpreadNum = Number.parseInt(currentSpreadNum + 1, 10);
+  if (mainEl && panel) {
+    let turnHintKey = "superfast-edge-turn";
+    let showTurnHint = true;
+    try {
+      showTurnHint = localStorage.getItem(turnHintKey) !== "1";
+    } catch (e) {
+      showTurnHint = true;
     }
-    rightHandle.setAttribute("href", "sp" + nextSpreadNum + ".html");
-  });
 
-  leftHandle.addEventListener("click", () => {
-    if (currentPage === "index.html") {
-      nextSpreadNum = 1;
-    } else {
-      nextSpreadNum = Number.parseInt(currentSpreadNum - 1, 10);
+    function edgeMarkup(direction) {
+      return `<span class="edge-cue"><span class="edge-mark"><span class="pixel-tri pixel-tri-${direction}"></span></span></span>`;
     }
-    leftHandle.setAttribute("href", "sp" + nextSpreadNum + ".html");
-  });
 
+    function syncEdgeHint(edge, book) {
+      if (!showTurnHint) return;
+      let mark = edge.querySelector(".edge-mark");
+      if (!mark) return;
+      let hint = mark.querySelector(".edge-hint");
+      if (!hint) {
+        hint = document.createElement("span");
+        hint.className = "edge-hint";
+        hint.textContent = edge.dataset.hint || "";
+        mark.append(hint);
+      }
+      let box = hint.getBoundingClientRect();
+      let gap = 8;
+      let clearOfBook = edge.classList.contains("edge-turn-next")
+        ? box.left >= book.right + gap
+        : box.right <= book.left - gap;
+      let onScreen = box.left >= gap && box.right <= window.innerWidth - gap && box.width > 8;
+      if (clearOfBook && onScreen) hint.classList.add("is-shown");
+      else hint.remove();
+    }
 
+    function markTurnUsed(event) {
+      if (event.currentTarget.classList.contains("is-disabled")) return;
+      try {
+        localStorage.setItem(turnHintKey, "1");
+      } catch (e) {}
+    }
+
+    edgePrev = document.createElement("a");
+    edgePrev.className = "edge-turn edge-turn-prev";
+    edgePrev.setAttribute("aria-label", "Previous spread");
+    edgePrev.innerHTML = edgeMarkup("left");
+    edgePrev.dataset.hint = "Go to prev page";
+    edgeNext = document.createElement("a");
+    edgeNext.className = "edge-turn edge-turn-next";
+    edgeNext.setAttribute("aria-label", "Next spread");
+    edgeNext.innerHTML = edgeMarkup("right");
+    edgeNext.dataset.hint = "Go to next page";
+    edgePrev.addEventListener("click", markTurnUsed);
+    edgeNext.addEventListener("click", markTurnUsed);
+    mainEl.append(edgePrev, edgeNext);
+
+    function placeEdges() {
+      let mainBox = mainEl.getBoundingClientRect();
+      let book = panel.getBoundingClientRect();
+      let top = book.top - mainBox.top;
+      let prevW = Math.max(0, book.left - mainBox.left);
+      let nextW = Math.max(0, mainBox.right - book.right);
+      edgePrev.style.top = top + "px";
+      edgeNext.style.top = top + "px";
+      edgePrev.style.height = book.height + "px";
+      edgeNext.style.height = book.height + "px";
+      edgePrev.style.width = prevW + "px";
+      edgeNext.style.width = nextW + "px";
+      syncEdgeHint(edgePrev, book);
+      syncEdgeHint(edgeNext, book);
+    }
+
+    placeEdges();
+    window.addEventListener("resize", placeEdges);
+    if (window.ResizeObserver) {
+      let edgesObserver = new ResizeObserver(placeEdges);
+      edgesObserver.observe(panel);
+      edgesObserver.observe(mainEl);
+    }
+  }
+
+  function setStep(el, href) {
+    if (!el) return;
+    if (href) {
+      el.href = href;
+      el.classList.remove("is-disabled");
+      el.removeAttribute("aria-disabled");
+    } else {
+      el.removeAttribute("href");
+      el.classList.add("is-disabled");
+      el.setAttribute("aria-disabled", "true");
+    }
+  }
+
+  let prevHref = null;
+  let nextHref = null;
+
+  if (isCover) {
+    nextHref = "sp1.html";
+  } else if (currentSpreadNum >= 1 && currentSpreadNum <= 15) {
+    prevHref = currentSpreadNum === 1 ? "index.html" : "sp" + (currentSpreadNum - 1) + ".html";
+    nextHref = currentSpreadNum < 15 ? "sp" + (currentSpreadNum + 1) + ".html" : null;
+  }
+
+  setStep(prevStep, prevHref);
+  setStep(nextStep, nextHref);
+  setStep(edgePrev, prevHref);
+  setStep(edgeNext, nextHref);
+
+  if (nextHref) {
+    let prefetch = document.createElement("link");
+    prefetch.rel = "prefetch";
+    prefetch.href = nextHref;
+    document.head.append(prefetch);
+  }
 });

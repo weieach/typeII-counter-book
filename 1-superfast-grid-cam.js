@@ -44,8 +44,8 @@ function setup() {
   // let c1 = createCanvas(450, 500);
 
   c1.style("position", "absolute");
-  c1.style("left", "40vw");
-  c1.style("top", "22vh");
+  c1.style("left", "39%");
+  c1.style("top", "18%");
 	pixelDensity(2);
   textFont(font);
 	video = createCapture(VIDEO);
